@@ -1,0 +1,134 @@
+.container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(93, 93, 93);
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+}
+
+.container-cabeceraform {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(93, 93, 93);
+  height: 70px;
+  align-items: center;
+  padding: 7px 0 7px;
+}
+
+.container-cabeceraform .input {
+  width: 100%;
+}
+
+.container-cabeceraform .label:nth-child(2) {
+  font-size: 20px;
+}
+
+.fecha {
+  width: 50%;
+}
+
+.contenido-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgb(93, 93, 93);
+}
+
+.input,
+.fecha {
+  margin: 0px 5px 0px 5px;
+  border: 1px solid rgb(93, 93, 93);
+  border-radius: 5px;
+  outline: none;
+  height: 60%;
+}
+
+.contenido-label {
+  margin: 8px 0px 0 5px;
+  font-size: 20px;
+}
+
+.input-contenido {
+  margin: 5px 5px 10px 5px;
+  border: 1px solid rgb(93, 93, 93);
+  border-radius: 5px;
+}
+
+.nombre-input {
+  border: none;
+  border-radius: 0;
+  border-left: 1px solid rgb(93, 93, 93);
+  border-right: 1px solid rgb(93, 93, 93);
+  padding: 5px;
+  font-size: 22px;
+}
+
+.etiquetas {
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.etiquetas-seeccionadas {
+  display: block;
+  position: relative;
+  min-height: 33px;
+  border: 1px solid rgb(93, 93, 93);
+  padding: 5px;
+  margin: 5px 5px 10px 5px;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.span-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  max-width: 250px;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 17px;
+  background-color: aquamarine;
+  margin: 4px;
+  border-radius: 3px;
+}
+
+.span-etiqueta button {
+  margin: 5px;
+  background: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+#btnAgregarEtiqueta {
+  font-size: 17px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  margin: 5px 5px 10px 5px;
+  color: aqua;
+  background-color: rgb(84, 84, 84);
+}
+.buttons{
+  text-align: center;
+}
+.boton {
+  font-size: 17px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  margin: 5px 5px 10px 5px;
+  color: aqua;
+  background-color: rgb(84, 84, 84);
+}
+.label-etiqueta {
+  margin: 8px 0px 0 5px;
+}

@@ -1,0 +1,38 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { ListaTareasComponent } from './components/lista-tareas/lista-tareas.component';
+import { PrincipalComponent } from './components/principal/principal.component';
+import { IndiceComponent } from './pages/indice/indice.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environments';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { ModelEtiquetasComponent } from './components/model-etiquetas/model-etiquetas.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    FormularioComponent,
+    ListaTareasComponent,
+    PrincipalComponent,
+    IndiceComponent,
+    ModelEtiquetasComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"proyecto-prueba-final","appId":"1:889212409061:web:cc09dbd2d82103a930700c","storageBucket":"proyecto-prueba-final.appspot.com","apiKey":"AIzaSyCdeD9Z4yYKt-wlUD4WS6e_DT1onNtGbeM","authDomain":"proyecto-prueba-final.firebaseapp.com","messagingSenderId":"889212409061","measurementId":"G-YYK5Z4M56R"})),
+    provideFirestore(() => getFirestore())
+  ],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

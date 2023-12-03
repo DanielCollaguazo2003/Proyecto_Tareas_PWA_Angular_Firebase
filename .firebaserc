@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "proyecto-prueba-final": {
+      "hosting": {
+        "proyecto_prueba": [
+          "proyecto-prueba-final"
+        ]
+      }
+    },
+    "tareas-proyecto-programacion": {
+      "hosting": {
+        "proyecto_prueba": [
+          "tareas-proyecto-programacion"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tareas-proyecto-programacion"
+  }
+}
