@@ -18,19 +18,23 @@ export class ModalEtiquetaService {
   getEtiquetas() {
     return this.etiquetas;
   }
-
+  setEtiquetas(etiquetas: Etiqueta[]) {
+    this.etiquetas = etiquetas;
+  }
   //Agregar una etiqueta
   addEtiqueta(etiqueta: Etiqueta) {
     let encontrada: boolean = false;
     this.etiquetas.push(etiqueta);
+    this.obtenerTareasLocalStorage();
+    console.log('Este es el rango'+this.etiquetasTotales.length)
     for (let index = 0; index < this.etiquetasTotales.length; index++) {
-      if (etiqueta === this.etiquetasTotales[index]) {
+      if (etiqueta.nombre === this.etiquetasTotales[index].nombre) {
          encontrada = true;
       }
     }
     if (!encontrada) {
       this.etiquetasTotales.push(etiqueta);
-      this.actualizarRecetas(this.etiquetasTotales);
+      this.actualizarTareas(this.etiquetasTotales);
     }
 
   }
@@ -40,19 +44,19 @@ export class ModalEtiquetaService {
   }
 
   //Metodo para obtener las etiquetas del localStorage dichas etiquetas son independientes a las que selecciona el usuario
-  obtenerRecetasLocalStorage() {
-    const seCargo = localStorage.getItem("seCargoRecetas") || null;
+  obtenerTareasLocalStorage() {
+    const seCargo = localStorage.getItem("seCargoTareas") || null;
+    console.log('el valor de se cargo es: ' + seCargo);
     if (!seCargo || !parseInt(seCargo)) {
-      localStorage.setItem("seCargoRecetas", '1');
+      localStorage.setItem("seCargoTareas", '1');
       return this.etiquetasTotales;
     }
     this.etiquetasTotales = JSON.parse(localStorage.getItem("etiquetas") || '[]')
     return this.etiquetasTotales;
   }
 
-  actualizarRecetas(etiquetas: Etiqueta[]) {
+  actualizarTareas(etiquetas: Etiqueta[]) {
     localStorage.setItem('etiquetas', JSON.stringify(etiquetas));
-    this.etiquetasTotales = etiquetas;
   }
 
   eliminarEtiquetaSeleccionada(etiqueta: Etiqueta) {

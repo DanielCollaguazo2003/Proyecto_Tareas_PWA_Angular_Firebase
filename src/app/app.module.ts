@@ -14,6 +14,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environments';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ModelEtiquetasComponent } from './components/model-etiquetas/model-etiquetas.component';
+import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ModelEtiquetasComponent } from './components/model-etiquetas/model-etiq
     ListaTareasComponent,
     PrincipalComponent,
     IndiceComponent,
-    ModelEtiquetasComponent
+    ModelEtiquetasComponent,
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -9,31 +9,31 @@ import { TareaService } from 'src/app/services/tarea.service';
   templateUrl: './model-etiquetas.component.html',
   styleUrls: ['./model-etiquetas.component.css']
 })
-export class ModelEtiquetasComponent implements OnInit {
+export class ModelEtiquetasComponent {
   modalSwitch?: boolean;
 
   listaEtiquetas: Etiqueta[];
   listaEtiquetasActualizar?: Etiqueta[];
 
   constructor(private _modalEtiquetaService: ModalEtiquetaService, private _tareaService: TareaService) {
-    this.listaEtiquetas = _modalEtiquetaService.obtenerRecetasLocalStorage();
+    this.listaEtiquetas = _modalEtiquetaService.obtenerTareasLocalStorage();
   }
-  ngOnInit(): void {
-    this._tareaService.tarea$.subscribe((tarea) => {
-      if (tarea) {
-        if (tarea.etiquetas) {
-          this.listaEtiquetasActualizar = tarea.etiquetas;
-        }
-      }
-    });
-  }
+  // ngOnInit(): void {
+  //   this._tareaService.tarea$.subscribe((tarea) => {
+  //     if (tarea) {
+  //       if (tarea.etiquetas) {
+  //         this.listaEtiquetasActualizar = tarea.etiquetas;
+  //       }
+  //     }
+  //   });
+  //}
 
   cerrarModal() {
     this._modalEtiquetaService.$modal.emit(false);
   }
 
   form = new FormGroup({
-    id: new FormControl(this._modalEtiquetaService.obtenerRecetasLocalStorage().length, []),
+    id: new FormControl(this._modalEtiquetaService.obtenerTareasLocalStorage().length, []),
     nombre: new FormControl('', [Validators.required]),
   })
 
@@ -45,29 +45,30 @@ export class ModelEtiquetasComponent implements OnInit {
 
     const etiqueta: Etiqueta = <Etiqueta>(this.form.getRawValue());
 
-    if (this.listaEtiquetasActualizar) {
-      for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
-        this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
+    // if (this.listaEtiquetasActualizar) {
+    //   for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
+    //     this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
 
-      }
-      this.listaEtiquetasActualizar = undefined;
-    }else {
-      this._modalEtiquetaService.addEtiqueta(etiqueta);
-    }
-
+    //   }
+    //   this.listaEtiquetasActualizar = undefined;
+    // }else {
+    this._modalEtiquetaService.addEtiqueta(etiqueta);
+    //}
+    this.listaEtiquetas = this._modalEtiquetaService.obtenerTareasLocalStorage();
     this.form.reset();
+    //}
   }
 
   seleccionarEtiqueta(etiqueta: Etiqueta) {
 
-    if (this.listaEtiquetasActualizar) {
-      for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
-        this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
-      }
-      this.listaEtiquetasActualizar = undefined;
-    }else {
-      this._modalEtiquetaService.addEtiqueta(etiqueta);
-    }
+    // if (this.listaEtiquetasActualizar) {
+    //   for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
+    //     this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
+    //   }
+    //   this.listaEtiquetasActualizar = undefined;
+    // }else {
+    this._modalEtiquetaService.addEtiqueta(etiqueta);
+    //}
 
   }
 

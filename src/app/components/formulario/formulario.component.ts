@@ -21,8 +21,8 @@ export class FormularioComponent implements OnInit {
 
   constructor(private router: Router,
     private _tareaFirebaseService: TareaFirebaseService,
-     private _modalEtiquetaService: ModalEtiquetaService,
-     private _tareaService: TareaService) {
+    private _modalEtiquetaService: ModalEtiquetaService,
+    private _tareaService: TareaService) {
     this.listaEtiquetas = _modalEtiquetaService.getEtiquetas();
   }
 
@@ -33,6 +33,14 @@ export class FormularioComponent implements OnInit {
     this._tareaService.tarea$.subscribe((tarea) => {
       if (tarea) {
         // Si hay una tarea, llenar el formulario
+        if (tarea.etiquetas) {
+          for (let index = 0; index < tarea.etiquetas.length; index++) {
+            this._modalEtiquetaService.addEtiqueta(tarea.etiquetas[index]);
+          }
+        } else {
+          this.listaEtiquetas = [];
+          this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
+        }
         this.tarea = tarea;
         this.form.patchValue({
           uid: tarea.uid,
@@ -73,19 +81,22 @@ export class FormularioComponent implements OnInit {
 
   }
 
-  eliminarEtiqueta(etiqueta: Etiqueta){
+  eliminarEtiqueta(etiqueta: Etiqueta) {
     console.log('hola esta es la etiqueta eliminada' + etiqueta.nombre)
     this._modalEtiquetaService.eliminarEtiquetaSeleccionada(etiqueta);
     this.listaEtiquetas = this._modalEtiquetaService.getEtiquetas();
   }
 
-  actualizarTarea(){
+  actualizarTarea() {
     if (this.tarea) {
       this.tarea = <Tarea>(this.form.getRawValue());
-      console.log(this.tarea)
+      this.tarea.etiquetas = this._modalEtiquetaService.getEtiquetas();
+      console.log( 'Esta son las etiquetas a actualizar: '+this.tarea.etiquetas?.toString());
       this._tareaFirebaseService.update(this.tarea);
+      this.listaEtiquetas = [];
+      this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
       this.form.reset();
-    }else{
+    } else {
       alert('No existe ninguna tarea para actualizar')
     }
     this.tarea = undefined;

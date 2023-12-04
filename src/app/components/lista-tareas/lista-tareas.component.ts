@@ -23,5 +23,10 @@ export class ListaTareasComponent {
   verTarea(tarea: Tarea){
     console.log("editando", tarea)
     this._tareaService.setTarea(tarea);
+
+  }
+
+  eliminarTarea(tarea: Tarea){
+    this._tareaFirebaseService.delete(tarea);
   }
 }

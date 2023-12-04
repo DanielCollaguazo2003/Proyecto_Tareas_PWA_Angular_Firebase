@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TareaFirebaseService {
 
-  private path = '/contactos'
+  private path = '/tareas'
 
   contactosRef: AngularFirestoreCollection<any>
 
