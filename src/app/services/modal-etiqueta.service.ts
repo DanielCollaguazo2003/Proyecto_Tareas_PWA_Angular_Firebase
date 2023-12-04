@@ -19,7 +19,7 @@ export class ModalEtiquetaService {
     return this.etiquetas;
   }
 
-  //Agregar una receta
+  //Agregar una etiqueta
   addEtiqueta(etiqueta: Etiqueta) {
     let encontrada: boolean = false;
     this.etiquetas.push(etiqueta);

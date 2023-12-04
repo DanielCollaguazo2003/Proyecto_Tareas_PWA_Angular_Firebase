@@ -1,6 +1,10 @@
 
+.container {
+  display: flex;
+  justify-content: center;
+}
 .tabla-tareas {
-  width: 100%;
+  width: 70%;
   margin: 20px 0;
 }
 
@@ -20,6 +24,20 @@ th {
   background-color: #f2f2f2;
 }
 
+th.col1 {
+  width: 40%;
+}
+
+th.col2 {
+  width: 20%;
+}
+
+th.col3 {
+  width: 25%;
+}
+th.col4 {
+  width: 15%;
+}
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }

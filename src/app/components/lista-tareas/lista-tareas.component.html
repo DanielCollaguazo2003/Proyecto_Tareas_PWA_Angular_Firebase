@@ -3,19 +3,15 @@
 </div>
 <div class="container">
   <ul>
-    <!-- <li *ngFor="let tarea of listaTareas">
-        <a >{{tarea.nombre}}</a>
-
-    </li> -->
 </ul>
 <div class="tabla-tareas">
   <table>
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Fecha</th>
-        <th>Etiquetas</th>
-        <th>Acción</th>
+        <th class="col1">Nombre</th>
+        <th class="col2">Fecha</th>
+        <th class="col3">Etiquetas</th>
+        <th class="col4">Acción</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +24,7 @@
           </li>
         </td>
         <td>
-          <button class="ver-button">Ver/Actuaizar</button>
+          <button class="ver-button" (click)="verTarea(tarea)">Ver/Actuaizar</button>
           <button class="eliminar-button">Eliminar</button>
         </td>
         <ng-template #sinEtiquetas>
