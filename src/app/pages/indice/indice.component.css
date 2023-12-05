@@ -1,3 +1,4 @@
+/* Etiqueta CSS para hacer que el componente del formulario ocupe toda la vista principal */
 .container-form{
    min-height: 100vh;
 }

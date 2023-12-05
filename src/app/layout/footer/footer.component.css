@@ -4,6 +4,8 @@
   padding: 20px 0;
   text-align: center;
   width: 100%;
+  position: static;
+  bottom: 0;
   }
 .footer-content {
   display: flex;

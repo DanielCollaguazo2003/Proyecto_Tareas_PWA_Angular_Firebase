@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class TareaFirebaseService {
 
+  /* Variables */
+    /* Variables necesarias para subir nustros datos al firebase*/
   private path = '/tareas'
 
   contactosRef: AngularFirestoreCollection<any>
@@ -20,10 +22,12 @@ export class TareaFirebaseService {
     })
   }
 
+  /* Metodo que devueleve un observable y hace referencia a la coelccion de datos del firebase */
   getAll(): Observable<Tarea[]>{
     return this.contactosRef.valueChanges();
   }
 
+  /* Metodo para buscar una tarea dentro del firebase mediante una ID y devolver una Tarea como tal */
   buscarTarea(tareaid: string){
     let listaTareas: Tarea[] = [];
     let tarea: Tarea;
@@ -39,26 +43,29 @@ export class TareaFirebaseService {
     return;
   }
 
+  /* Metodo para guardar una tarea en el firebase el .set guarda */
   save(tarea: Tarea){
     const uid = this.db.createId()
     tarea.uid = uid
-    console.log('Tarea', tarea)
     return this.contactosRef.doc(uid).set(Object.assign({}, tarea));
   }
 
+  /* MEtodo para actualizar una tarea del firebase, el .update actualiza */
   update(tarea: Tarea){
     return this.contactosRef.doc(tarea.uid).update(Object.assign({}, tarea));
   }
 
+  /* Metodo para eliminar una tarea del firebase el .delete elimina*/
   delete(tarea: Tarea){
     return this.contactosRef.doc(tarea.uid).delete();
   }
 
+  /* Metodo para obtener una tarea */
   getTarea(uid: string){
-    console.log('uid', uid)
     return this.db.doc(this.path+'/'+uid).get()
   }
 
+  /* Metodo para generar un UID de Firebase */
   generateUid(){
     const uid = this.db.createId();
     return uid;

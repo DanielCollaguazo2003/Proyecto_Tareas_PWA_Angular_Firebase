@@ -4,6 +4,8 @@ import { IndiceComponent } from './pages/indice/indice.component';
 import { ListaTareasComponent } from './components/lista-tareas/lista-tareas.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 
+
+/* Direccionamiento de nuestra pagina, tendremos como direccionamiento predeterminado el home */
 const routes: Routes = [
   {path: "home", component: IndiceComponent },
   {path: "lista", component: ListaTareasComponent},

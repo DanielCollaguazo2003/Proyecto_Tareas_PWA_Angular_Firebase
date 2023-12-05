@@ -11,7 +11,7 @@ export class ModalEtiquetaService {
   }
 
 
-  // Vamos a crear un objeto que se encargue de observar si se abre o no el modal que es la ventana de las etiquetas
+  /* Vamos a crear un objeto que se encargue de observar si se abre o no el modal que es la ventana de las etiquetas */
   $modal = new EventEmitter<any>();
 
   //Recuperar etiquetas
@@ -21,7 +21,8 @@ export class ModalEtiquetaService {
   setEtiquetas(etiquetas: Etiqueta[]) {
     this.etiquetas = etiquetas;
   }
-  //Agregar una etiqueta
+  /*Agregar una Etiqueta*/
+    /* Metodo para agragar una etiqueta en el validaremos si la qtiqueta existe y en caso de que no me mandara a las diferentes listas*/
   addEtiqueta(etiqueta: Etiqueta) {
     let encontrada: boolean = false;
     let encontradaEtiquetaSel: boolean = false;
@@ -49,6 +50,7 @@ export class ModalEtiquetaService {
 
   }
 
+  /* Metodo para eliminar las etiquetas una vez se completo el formulario */
   limpiarEtiquetasSeleccionadas() {
     this.etiquetas.splice(0, this.etiquetas.length);
   }
@@ -65,13 +67,14 @@ export class ModalEtiquetaService {
     return this.etiquetasTotales;
   }
 
+  /* Esto para actualizr las etiquetas dentro del locale storage */
   actualizarTareas(etiquetas: Etiqueta[]) {
     localStorage.setItem('etiquetas', JSON.stringify(etiquetas));
   }
 
+  /* Metodo para indexar una etiqueta y eliminarla */
   eliminarEtiquetaSeleccionada(etiqueta: Etiqueta) {
     this.etiquetas = this.etiquetas.filter(etiquetaid => etiquetaid !== etiqueta);
-    console.log('Etiquetas: ' + this.etiquetas.length)
   }
 
 }
