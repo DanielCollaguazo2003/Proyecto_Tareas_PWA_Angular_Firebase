@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Etiqueta } from 'src/app/domain/etiqueta';
@@ -6,6 +6,7 @@ import { Tarea } from 'src/app/domain/tarea';
 import { ModalEtiquetaService } from 'src/app/services/modal-etiqueta.service';
 import { TareaFirebaseService } from 'src/app/services/tarea-firebase.service';
 import { TareaService } from 'src/app/services/tarea.service';
+import { ListaTareasComponent } from '../lista-tareas/lista-tareas.component';
 
 @Component({
   selector: 'app-formulario',
@@ -22,6 +23,7 @@ export class FormularioComponent implements OnInit {
   constructor(private router: Router,
     private _tareaFirebaseService: TareaFirebaseService,
     private _modalEtiquetaService: ModalEtiquetaService,
+    private elementRef: ElementRef,
     private _tareaService: TareaService) {
     this.listaEtiquetas = _modalEtiquetaService.getEtiquetas();
   }
@@ -91,7 +93,7 @@ export class FormularioComponent implements OnInit {
     if (this.tarea) {
       this.tarea = <Tarea>(this.form.getRawValue());
       this.tarea.etiquetas = this._modalEtiquetaService.getEtiquetas();
-      console.log( 'Esta son las etiquetas a actualizar: '+this.tarea.etiquetas?.toString());
+      console.log('Esta son las etiquetas a actualizar: ' + this.tarea.etiquetas?.toString());
       this._tareaFirebaseService.update(this.tarea);
       this.listaEtiquetas = [];
       this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
@@ -105,5 +107,10 @@ export class FormularioComponent implements OnInit {
 
   openModal() {
     this.modalSwitch = true;
+  }
+
+  scrollToList() {
+    this._tareaService.triggerScroll();
+    console.log('hola')
   }
 }

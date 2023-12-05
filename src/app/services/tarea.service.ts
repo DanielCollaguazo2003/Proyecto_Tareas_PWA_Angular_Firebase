@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Tarea } from '../domain/tarea';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,12 @@ export class TareaService {
 
   setTarea(tarea: Tarea){
     this.tareaSubject.next(tarea);
+  }
+  private scrollSubject = new Subject<void>();
+
+  scrollEvent$ = this.scrollSubject.asObservable();
+
+  triggerScroll() {
+    this.scrollSubject.next();
   }
 }
