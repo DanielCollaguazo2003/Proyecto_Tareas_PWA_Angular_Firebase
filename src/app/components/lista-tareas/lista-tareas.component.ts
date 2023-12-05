@@ -20,12 +20,13 @@ export class ListaTareasComponent implements OnInit, OnDestroy {
      private _tareaService: TareaService){
     this._tareaFirebaseService.getAll().subscribe(data => {
       this.listaTareas = data;
+      this.listaTareas = this.listaTareas.filter(tarea => tarea.fecha);
+      this.listaTareas.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
     });;
   }
 
-  verTarea(tarea: Tarea){
-    console.log("editando", tarea)
-    this._tareaService.setTarea(tarea);
+  verTarea(id: string){
+    this.router.navigate(['/formulario', id]);
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Etiqueta } from 'src/app/domain/etiqueta';
 import { Tarea } from 'src/app/domain/tarea';
 import { ModalEtiquetaService } from 'src/app/services/modal-etiqueta.service';
@@ -19,42 +19,52 @@ export class FormularioComponent implements OnInit {
   modalSwitch: boolean = false;
   listaEtiquetas: Etiqueta[] = [];
   listaEtiquetasActu: Etiqueta[] = [];
+  listaTareas: Tarea[] = [];
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private _tareaFirebaseService: TareaFirebaseService,
     private _modalEtiquetaService: ModalEtiquetaService,
-    private elementRef: ElementRef,
-    private _tareaService: TareaService) {
+    private route: ActivatedRoute,
+    private _tareaService: TareaService
+  ) {
     this.listaEtiquetas = _modalEtiquetaService.getEtiquetas();
   }
 
-  //En el onInit debemos obtener el valor que vamos a observar para el modal al momento de lanzar la pagina
   ngOnInit(): void {
     this._modalEtiquetaService.$modal.subscribe((valor) => { this.modalSwitch = valor });
+    this.route.params.subscribe(params => {
+      const tareaId = params['id'];
 
-    this._tareaService.tarea$.subscribe((tarea) => {
-      if (tarea) {
-        // Si hay una tarea, llenar el formulario
-        if (tarea.etiquetas) {
-          for (let index = 0; index < tarea.etiquetas.length; index++) {
-            this._modalEtiquetaService.addEtiqueta(tarea.etiquetas[index]);
+      this._tareaFirebaseService.getTarea(tareaId).subscribe((tarea: any) => {
+        if (tarea.exists) {
+          const tareaData = tarea.data();
+
+          if (tareaData.etiquetas) {
+            for (let index = 0; index < tareaData.etiquetas.length; index++) {
+              this._modalEtiquetaService.addEtiqueta(tareaData.etiquetas[index]);
+            }
+          } else {
+            this.listaEtiquetas = [];
+            this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
           }
-        } else {
-          this.listaEtiquetas = [];
-          this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
-        }
-        this.tarea = tarea;
-        this.form.patchValue({
-          uid: tarea.uid,
-          nombre: tarea.nombre,
-          fecha: tarea.fecha,
-          contenido: tarea.contenido,
-          etiquetas: tarea.etiquetas || null, // Asegúrate de manejar correctamente las etiquetas
-        });
 
-      }
+          this.tarea = tareaData;
+          this.form.patchValue({
+            uid: tareaData.uid,
+            nombre: tareaData.nombre,
+            fecha: tareaData.fecha,
+            contenido: tareaData.contenido,
+            etiquetas: tareaData.etiquetas || null,
+          });
+        } else {
+          console.error('La tarea no existe.');
+          // Puedes manejar el caso cuando la tarea no existe, por ejemplo, redirigiendo o mostrando un mensaje.
+        }
+      });
     });
   }
+  //En el onInit debemos obtener el valor que vamos a observar para el modal al momento de lanzar la pagina
 
   form = new FormGroup({
     uid: new FormControl(this._tareaFirebaseService.generateUid(), []),
@@ -65,22 +75,24 @@ export class FormularioComponent implements OnInit {
   })
 
   agregartarea() {
-    console.log(<Tarea>(this.form.getRawValue()));
-    console.log('Estas son las etiquetas: ' + this.listaEtiquetas[1]);
-    if (this.form.invalid) {
-      alert('La informacion ingresada es incorrecta o incompleta');
-      return
+    if (!this.tarea) {
+      console.log(<Tarea>(this.form.getRawValue()));
+      console.log('Estas son las etiquetas: ' + this.listaEtiquetas[1]);
+      if (this.form.invalid) {
+        alert('La informacion ingresada es incorrecta o incompleta');
+        return
+      }
+      this.listaEtiquetas = this._modalEtiquetaService.getEtiquetas();
+      const tarea: Tarea = <Tarea>(this.form.getRawValue());
+      tarea.etiquetas = this.listaEtiquetas;
+      this._tareaFirebaseService.save(tarea);
+
+      this.form.reset();
+
+      this._modalEtiquetaService.limpiarEtiquetasSeleccionadas();
+    }else{
+      alert('Esta en la actualizando una tarea')
     }
-    this.listaEtiquetas = this._modalEtiquetaService.getEtiquetas();
-    const tarea: Tarea = <Tarea>(this.form.getRawValue());
-    tarea.etiquetas = this.listaEtiquetas;
-    this._tareaFirebaseService.save(tarea);
-
-    this.form.reset();
-
-    this._modalEtiquetaService.limpiarEtiquetasSeleccionadas();
-
-
   }
 
   eliminarEtiqueta(etiqueta: Etiqueta) {
@@ -98,6 +110,7 @@ export class FormularioComponent implements OnInit {
       this.listaEtiquetas = [];
       this._modalEtiquetaService.setEtiquetas(this.listaEtiquetas);
       this.form.reset();
+      this.router.navigate(['/home']);
     } else {
       alert('No existe ninguna tarea para actualizar')
     }

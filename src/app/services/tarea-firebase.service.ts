@@ -21,7 +21,7 @@ export class TareaFirebaseService {
   }
 
   getAll(): Observable<Tarea[]>{
-    return this.contactosRef.valueChanges()
+    return this.contactosRef.valueChanges();
   }
 
   buscarTarea(tareaid: string){
@@ -36,7 +36,7 @@ export class TareaFirebaseService {
          return tarea;
       }
     }
-    return null;
+    return;
   }
 
   save(tarea: Tarea){
@@ -56,7 +56,7 @@ export class TareaFirebaseService {
 
   getTarea(uid: string){
     console.log('uid', uid)
-    return this.db.doc(this.path+'/'+uid).valueChanges()
+    return this.db.doc(this.path+'/'+uid).get()
   }
 
   generateUid(){
