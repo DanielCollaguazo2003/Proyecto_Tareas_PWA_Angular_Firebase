@@ -44,32 +44,13 @@ export class ModelEtiquetasComponent {
     }
 
     const etiqueta: Etiqueta = <Etiqueta>(this.form.getRawValue());
-
-    // if (this.listaEtiquetasActualizar) {
-    //   for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
-    //     this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
-
-    //   }
-    //   this.listaEtiquetasActualizar = undefined;
-    // }else {
     this._modalEtiquetaService.addEtiqueta(etiqueta);
-    //}
     this.listaEtiquetas = this._modalEtiquetaService.obtenerTareasLocalStorage();
     this.form.reset();
-    //}
   }
 
   seleccionarEtiqueta(etiqueta: Etiqueta) {
-
-    // if (this.listaEtiquetasActualizar) {
-    //   for (let index = 0; index < this.listaEtiquetasActualizar.length; index++) {
-    //     this._modalEtiquetaService.addEtiqueta(this.listaEtiquetasActualizar[index]);
-    //   }
-    //   this.listaEtiquetasActualizar = undefined;
-    // }else {
     this._modalEtiquetaService.addEtiqueta(etiqueta);
-    //}
-
   }
 
 }

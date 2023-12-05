@@ -24,7 +24,17 @@ export class ModalEtiquetaService {
   //Agregar una etiqueta
   addEtiqueta(etiqueta: Etiqueta) {
     let encontrada: boolean = false;
-    this.etiquetas.push(etiqueta);
+    let encontradaEtiquetaSel: boolean = false;
+    for (let index = 0; index < this.etiquetas.length; index++) {
+      if (etiqueta.nombre === this.etiquetas[index].nombre) {
+         encontradaEtiquetaSel = true;
+      }
+    }
+    if (!encontradaEtiquetaSel) {
+      this.etiquetas.push(etiqueta);
+    }else{
+      alert('La etiqueta ya esta seleccionada');
+    }
     this.obtenerTareasLocalStorage();
     console.log('Este es el rango'+this.etiquetasTotales.length)
     for (let index = 0; index < this.etiquetasTotales.length; index++) {
@@ -61,12 +71,7 @@ export class ModalEtiquetaService {
 
   eliminarEtiquetaSeleccionada(etiqueta: Etiqueta) {
     this.etiquetas = this.etiquetas.filter(etiquetaid => etiquetaid !== etiqueta);
+    console.log('Etiquetas: ' + this.etiquetas.length)
   }
 
-  // agregarReceta(Etiqueta: Receta) {
-  //   this.estaBuscado
-  //   if(!this.estaBuscado) this.recetasBuscador.push(receta);
-  //   this.recetasList.push(receta);
-
-  // }
 }

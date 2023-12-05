@@ -24,6 +24,21 @@ export class TareaFirebaseService {
     return this.contactosRef.valueChanges()
   }
 
+  buscarTarea(tareaid: string){
+    let listaTareas: Tarea[] = [];
+    let tarea: Tarea;
+    this.contactosRef.valueChanges().subscribe(data => {
+      listaTareas = data;
+    })
+    for (let index = 0; index < listaTareas.length; index++) {
+      if (tareaid === listaTareas[index].uid) {
+         tarea = listaTareas[index];
+         return tarea;
+      }
+    }
+    return null;
+  }
+
   save(tarea: Tarea){
     const uid = this.db.createId()
     tarea.uid = uid

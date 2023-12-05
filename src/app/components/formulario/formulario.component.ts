@@ -71,9 +71,9 @@ export class FormularioComponent implements OnInit {
       alert('La informacion ingresada es incorrecta o incompleta');
       return
     }
-
+    this.listaEtiquetas = this._modalEtiquetaService.getEtiquetas();
     const tarea: Tarea = <Tarea>(this.form.getRawValue());
-
+    tarea.etiquetas = this.listaEtiquetas;
     this._tareaFirebaseService.save(tarea);
 
     this.form.reset();
