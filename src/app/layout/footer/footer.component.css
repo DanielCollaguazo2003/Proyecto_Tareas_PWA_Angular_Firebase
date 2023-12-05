@@ -13,6 +13,16 @@
   margin: 0 auto;
 }
 
+.social-links {
+  width: 40%;
+}
+.info{
+  width: 40%;
+}
+
+.logo-container{
+  width: 20%;
+}
 .logo-container img {
   max-width: 200px;
   margin-right: 40px;

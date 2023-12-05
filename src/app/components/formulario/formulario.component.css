@@ -1,90 +1,75 @@
 .container {
-  display: grid;
-  place-items: center;
-  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .formulario {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgb(93, 93, 93);
-  border-radius: 10px;
-  padding: 10px;
-  width: 50%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container-cabeceraform {
   display: flex;
-  flex-direction: row;
-  width: 100%;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(93, 93, 93);
-  height: 70px;
   align-items: center;
-  padding: 7px 0 7px;
 }
 
-.container-cabeceraform .input {
-  width: 100%;
+.nombre-input,
+.fecha,
+.area-contenido,
+.input-etiquetas {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.container-cabeceraform .label:nth-child(2) {
-  font-size: 20px;
+.nombre-input:focus,
+.fecha:focus,
+.area-contenido:focus,
+.input-etiquetas:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-.fecha {
-  width: 50%;
+.label {
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .contenido-container {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid rgb(93, 93, 93);
-}
-
-.input,
-.fecha {
-  margin: 0px 5px 0px 5px;
-  border: 1px solid rgb(93, 93, 93);
-  border-radius: 5px;
-  outline: none;
-  height: 60%;
+  margin-top: 20px;
 }
 
 .contenido-label {
-  margin: 8px 0px 0 5px;
-  font-size: 20px;
+  font-weight: bold;
 }
 
-.input-contenido {
-  margin: 5px 5px 10px 5px;
-  border: 1px solid rgb(93, 93, 93);
-  border-radius: 5px;
-}
-
-.nombre-input {
-  border: none;
-  border-radius: 0;
-  border-left: 1px solid rgb(93, 93, 93);
-  border-right: 1px solid rgb(93, 93, 93);
-  padding: 5px;
-  font-size: 22px;
+.area-contenido {
+  resize: vertical;
 }
 
 .etiquetas {
-  margin-top: 8px;
-  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .etiquetas-seeccionadas {
   display: block;
   position: relative;
   min-height: 33px;
-  border: 1px solid rgb(93, 93, 93);
+  border: 1px solid #ddd;
   padding: 5px;
-  margin: 5px 5px 10px 5px;
   border-radius: 5px;
   align-items: center;
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .span-etiqueta {
@@ -109,26 +94,34 @@
 }
 
 #btnAgregarEtiqueta {
-  font-size: 17px;
-  width: 200px;
-  height: 30px;
+  padding: 10px 20px;
+  background-color: #3c74b0;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  margin: 5px 5px 10px 5px;
-  color: aqua;
-  background-color: rgb(84, 84, 84);
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .buttons{
   text-align: center;
+  margin-top: 15px;
 }
+
 .boton {
-  font-size: 17px;
-  width: 200px;
-  height: 30px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  margin: 5px 5px 10px 5px;
-  color: aqua;
-  background-color: rgb(84, 84, 84);
+  cursor: pointer;
+  margin-right: 10px;
 }
-.label-etiqueta {
-  margin: 8px 0px 0 5px;
+
+.boton:hover {
+  background-color: #0056b3;
+}
+#btnAgregarEtiqueta:hover {
+  background-color: #00b351;
 }
