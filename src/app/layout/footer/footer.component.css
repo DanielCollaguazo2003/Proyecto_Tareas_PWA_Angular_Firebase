@@ -1,0 +1,30 @@
+.footer {
+  background-color: #585858;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-container img {
+  max-width: 200px;
+  margin-right: 40px;
+}
+
+.info {
+  flex-grow: 2;
+  margin: 0 20px;
+}
+
+.social-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}

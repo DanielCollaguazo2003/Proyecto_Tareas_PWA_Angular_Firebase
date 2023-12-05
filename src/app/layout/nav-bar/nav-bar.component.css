@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.navbar img {
+  max-width: 200px;
+}
