@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container tittle">
   <h1>Lista de tareas o notas</h1>
 </div>
 <div class="container">
@@ -23,12 +23,14 @@
             #{{ etiqueta.nombre }}
           </li>
         </td>
-        <td>
+        <td class="row4">
           <button class="ver-button" (click)="verTarea(tarea)">Ver/Actuaizar</button>
           <button class="eliminar-button" (click)="eliminarTarea(tarea)">Eliminar</button>
         </td>
         <ng-template #sinEtiquetas>
-          <p class="no-etiqueta">Sin etiquetas</p>
+          <div class="no-etiqueta">
+            <p class="no-etiqueta">Sin etiquetas</p>
+          </div>
         </ng-template>
       </tr>
     </tbody>

@@ -117,6 +117,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
+  width: 105px;
 }
 
 .boton:hover {
@@ -135,4 +136,40 @@
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+/* Version Móvil */
+@media (max-width: 640px) {
+  .container h1 {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .container-cabeceraform {
+    flex-direction: column;
+    align-items: start;
+    margin-top: 5px;
+  }
+
+  .container-cabeceraform input:nth-child(1){
+    height: 30px;
+  }
+
+  .contenido-container {
+    margin-top: 0;
+  }
+
+  .etiquetas {
+    width: 100%;
+  }
+
+  .span-etiqueta {
+    max-width: 150px;
+    font-size: 12px;
+    height: 18px;
+  }
+
+  .scroll-arrow{
+    display: none;
+  }
 }

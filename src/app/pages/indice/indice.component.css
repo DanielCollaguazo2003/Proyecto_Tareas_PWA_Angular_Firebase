@@ -1,3 +1,11 @@
 .container-form{
    min-height: 100vh;
 }
+@media(max-width: 640px) {
+  .container-list {
+    display: none;
+  }
+  .container-form{
+    min-height: none;
+  }
+}

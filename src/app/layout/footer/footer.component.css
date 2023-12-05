@@ -3,8 +3,8 @@
   color: #fff;
   padding: 20px 0;
   text-align: center;
-}
-
+  width: 100%;
+  }
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -37,4 +37,21 @@
   color: #fff;
   margin: 0 10px;
   text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .social-links {
+    display: none;
+  }
+
+  .logo-container{
+    display: none;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+  .footer-content {
+    width: 100%;
+  }
 }
