@@ -8,7 +8,6 @@ La aplicación sobre Tareas y Notas es una solución web y móvil que ha sido di
 - [Uso](#uso)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
 ## Instalación
