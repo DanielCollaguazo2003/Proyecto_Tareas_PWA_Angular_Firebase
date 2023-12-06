@@ -51,11 +51,17 @@ La aplicación sobre Tareas y Notas es una solución web y móvil que ha sido di
 ## Uso
 
 Para usar la aplicacion tanto en desktop como en movil estara el formulario donde campos como: Nombre,  Fecha y contenido son obligatorios, por parte de las etiquetas estas pueden ser opcionales
+
 <img width="1279" alt="image" src="https://github.com/DanielCollaguazo2003/Proyecto_Tareas_PWA_Angular_Firebase/assets/109354364/1248849f-2552-4d06-94a8-c0b86327d75f">
+
  Dentro de la lista podremos eliminar o actualizar/observar la tarea
+ 
  <img width="1272" alt="image" src="https://github.com/DanielCollaguazo2003/Proyecto_Tareas_PWA_Angular_Firebase/assets/109354364/20640eaf-3d10-4dc6-90e2-939c668c0489">
+ 
 En la parte movil tendremos un menu de navegacion para la lista y el formulario
+
 <img width="304" alt="image" src="https://github.com/DanielCollaguazo2003/Proyecto_Tareas_PWA_Angular_Firebase/assets/109354364/bf12dd87-3e2c-4a58-9b1a-f452e9cce465">
+
 
 ## Estructura del Proyecto
 
