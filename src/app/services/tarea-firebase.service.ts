@@ -11,6 +11,7 @@ export class TareaFirebaseService {
   /* Variables */
     /* Variables necesarias para subir nustros datos al firebase*/
   private path = '/tareas'
+  tareasLocales: Tarea[] = [];
 
   contactosRef: AngularFirestoreCollection<any>
 
@@ -45,6 +46,13 @@ export class TareaFirebaseService {
 
   /* Metodo para guardar una tarea en el firebase el .set guarda */
   save(tarea: Tarea){
+
+    if(this.tareasLocales.length != 0){
+      for (let index = 0; index < this.tareasLocales.length; index++) {
+        const element = this.tareasLocales[index];
+
+      }
+    }
     const uid = this.db.createId()
     tarea.uid = uid
     return this.contactosRef.doc(uid).set(Object.assign({}, tarea));
@@ -71,4 +79,7 @@ export class TareaFirebaseService {
     return uid;
   }
 
+  getAndSaveLocally(): Observable<Tarea[]> {
+    return this.getAll();
+  }
 }

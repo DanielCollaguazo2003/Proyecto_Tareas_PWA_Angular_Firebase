@@ -17,6 +17,7 @@ import { ModelEtiquetasComponent } from './components/model-etiquetas/model-etiq
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFirestoreModule.enablePersistence(),
     provideFirebaseApp(() => initializeApp({"projectId":"proyecto-prueba-final","appId":"1:889212409061:web:cc09dbd2d82103a930700c","storageBucket":"proyecto-prueba-final.appspot.com","apiKey":"AIzaSyCdeD9Z4yYKt-wlUD4WS6e_DT1onNtGbeM","authDomain":"proyecto-prueba-final.firebaseapp.com","messagingSenderId":"889212409061","measurementId":"G-YYK5Z4M56R"})),
     provideFirestore(() => getFirestore()),
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -32,6 +32,7 @@ export class FormularioComponent implements OnInit {
     private _tareaService: TareaService
   ) {
     /*Obtenemos las etiquetas de nuestro servicio para poder trabajar con ellas*/
+    
     this.listaEtiquetas = _modalEtiquetaService.getEtiquetas();
   }
 

@@ -23,11 +23,34 @@ export class ListaTareasComponent implements OnInit, OnDestroy {
      private router: Router,
      private renderer: Renderer2,
      private _tareaService: TareaService){
-    this._tareaFirebaseService.getAll().subscribe(data => {
-      this.listaTareas = data;
-      this.listaTareas = this.listaTareas.filter(tarea => tarea.fecha);
-      this.listaTareas.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
-    });;
+     this._tareaFirebaseService.getAll().subscribe(data => {
+       this.listaTareas = data;
+       this.listaTareas = this.listaTareas.filter(tarea => tarea.fecha);
+       this.listaTareas.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+     });;
+    // Intenta obtener las tareas localmente
+    // const tareasLocal = this.getTareasLocal();
+
+    // if (tareasLocal && tareasLocal.length > 0) {
+    //   this.listaTareas = tareasLocal;
+    // } else {
+    //   // Si no hay tareas locales, obtén las tareas de Firebase
+    //   this._tareaFirebaseService.getAndSaveLocally().subscribe((data) => {
+    //     this.listaTareas = data;
+
+    //     // Guarda las tareas localmente
+    //     this.saveTareasLocal(data);
+    //   });
+    // }
+  }
+
+  getTareasLocal(): Tarea[] | null {
+    const tareasLocal = localStorage.getItem('tareas');
+    return tareasLocal ? JSON.parse(tareasLocal) : null;
+  }
+
+  saveTareasLocal(tareas: Tarea[]): void {
+    localStorage.setItem('tareas', JSON.stringify(tareas));
   }
 
   /* Ver la tarea */
